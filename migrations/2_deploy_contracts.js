@@ -1,5 +1,5 @@
-var Prescription = artifacts.require("./Prescription.sol");
+var Doctor = artifacts.require("./Doctor.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(Prescription);
+  deployer.deploy(Doctor);
 };
