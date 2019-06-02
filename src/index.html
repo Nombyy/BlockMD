@@ -21,18 +21,38 @@
     <div class="container" style="width: 650px;">
       <div class="row">
         <div class="col-lg-12">
-          <h1 class="text-center">Election Results</h1>
+          <h1 class="text-center">Patient Prescripton Information</h1>
           <hr/>
           <br/>
           <div id="loader">
             <p class="text-center">Loading...</p>
           </div>
           <div id="content">
-            <input type="text" id="healthCard" name="healthCard" />
+            <label for="healthCard">Enter Health Card#</label>
+            <input type="text" id="healthCard" name="healthCard"/>
             <hr/>
-            <p id="accountAddress" class="text-center"></p>
-            <p id="drugName" class="text-center"></p>
           </div>
+          
+          <table class="table" id="tblPresc">
+              <thead>
+                <tr>
+                  <th scope="col">Drug Name</th>
+                  <th scope="col">Frequency</th>
+                  <th scope="col">Dosage</th>
+                </tr>
+              </thead>
+              <tbody id="prescriptionResult">
+              </tbody>
+            </table>
+            <input type="hidden" id ="selectpresc">
+          <form onSubmit="App.GetPatientInfo(); return false;">
+              <button type="submit" class="btn btn-primary">Get Patient Prescription</button>
+              
+              <hr />
+          </form>
+          <button type="button" class="btn btn-primary" onclick="App.UpdatePrescriptionInfo(); ">Update Prescription</button>
+            <p id="accountAddress" class="text-center"></p>
+          
         </div>
       </div>
     </div>

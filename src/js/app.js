@@ -3,7 +3,7 @@ App = {
   contracts: {},
   account: '0x0',
   isReceived: false,
-
+  SelectedPrescID : 0,
   init: function() {
     return App.initWeb3();
   },
@@ -53,7 +53,7 @@ App = {
     $("#accountAddress").html("Pharmacist Account: " + App.account);
 
     // Load contract data
-  App.contracts.Doctor.deployed().then(function(i) {
+/*   App.contracts.Doctor.deployed().then(function(i) {
   instance = i;
   // $("#healthCard").html("123456789");
   var healthC = $("#healthCard").val();
@@ -81,7 +81,7 @@ App = {
   })
 }).catch(function(err) {
   console.error(err);
-});
+}); */
 
   },
     
@@ -103,9 +103,64 @@ App = {
     /*
      * Replace me...
      */
+  },
+
+  GetPatientInfo: function()
+  {
+    App.contracts.Doctor.deployed().then(function(i) {
+      instance = i;
+      // $("#healthCard").html("123456789");
+      var healthC = $("#healthCard").val();
+
+      instance.patients(healthC).then(function(patient){ 
+        var presID = patient[4];
+        //console.log(presID + " is the curr prescription id");
+        
+        return presID;    
+      }).then(function(presID) {
+          instance.prescriptions(presID).then(function(prescription){
+            SelectedPrescID = prescription[0];
+            var healthCardNumber = prescription[1];
+            var drugName = prescription[2];
+            var frequency = prescription[3];
+            var dosage = prescription[4]; 
+            var patientReceived = prescription[5];
+            $("#selectpresc").val(SelectedPrescID);
+            // Render prescription Result
+            var prescriptionTemplate = "<tr><th>" + drugName + "</th><td>" + frequency + "</td><td>" + dosage + "</td></tr>"
+            var prescriptionResult = $("#prescriptionResult");
+            prescriptionResult.html(prescriptionTemplate);
+            //var drugN = $("#drugName").html(drugName);
+    
+          })
+      })
+    }).catch(function(err) {
+      console.error(err);
+    });
+  },
+
+  UpdatePrescriptionInfo: function()
+  {
+    App.contracts.Doctor.deployed().then(function(i) {
+      instance = i;
+      console.log("prescID" + SelectedPrescID);
+      instance.fulfill(SelectedPrescID).then(function(j) {
+        instance.prescriptions(SelectedPrescID).then(function(prescription){
+          if ( prescription[5] == true) {
+            //success
+            alert("Successfully updated!");
+          } else {
+            //error
+            alert("Error in system!");
+          }
+        });
+      }) 
+    });
   }
 
 };
+
+
 
 
 $(function() {

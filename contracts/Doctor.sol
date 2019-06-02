@@ -61,13 +61,13 @@ contract Doctor {
         prescriptions[prescriptionID].patientReceived = true;
     }  */
 
-    function fulfill(uint presid) private
+    function fulfill(uint presid) public
     {
         prescriptions[presid].patientReceived = true;
     }
-    function fulfillPres() public
+/*     function fulfillPres() public
     {
         //Note:you need to validate the patient ID
         fulfill(1);
-    }
+    } */
 }
