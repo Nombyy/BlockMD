@@ -146,13 +146,18 @@ App = {
       console.log("prescID" + SelectedPrescID);
       instance.fulfill(SelectedPrescID).then(function(j) {
         instance.prescriptions(SelectedPrescID).then(function(prescription){
-          if ( prescription[5] == true) {
-            //success
-            alert("Successfully updated!");
-          } else {
-            //error
-            alert("Error in system!");
-          }
+          var healthCard = prescription[1];
+          var patientReceived = prescription[5];
+
+          instance.patients(healthCard).then(function(patient){
+            if ( patientReceived == true) {
+              //success
+              alert("Successfully updated! and Bill sent to " + patient[5]);
+            } else {
+              //error
+              alert("Error in system!");
+            }
+          })
         });
       }) 
     });
