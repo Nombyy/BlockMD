@@ -125,12 +125,16 @@ App = {
             var frequency = prescription[3];
             var dosage = prescription[4]; 
             var patientReceived = prescription[5];
+
             $("#selectpresc").val(SelectedPrescID);
+
             // Render prescription Result
             var prescriptionTemplate = "<tr><th>" + drugName + "</th><td>" + frequency + "</td><td>" + dosage + "</td></tr>"
             var prescriptionResult = $("#prescriptionResult");
             prescriptionResult.html(prescriptionTemplate);
-            //var drugN = $("#drugName").html(drugName);
+
+            $("#tblPresc").show();
+            $("#updatePrescription").show();
     
           })
       })
@@ -150,14 +154,9 @@ App = {
           var patientReceived = prescription[5];
 
           instance.patients(healthCard).then(function(patient){
-            if ( patientReceived == true) {
-              //success
-              alert("Successfully updated! and Bill sent to " + patient[5]);
-            } else {
-              //error
-              alert("Error in system!");
-            }
-          })
+          }).catch(function(err) {
+            console.error(err);
+          });
         });
       }) 
     });
@@ -171,5 +170,8 @@ App = {
 $(function() {
   $(window).load(function() {
     App.init();
+
+    $("#tblPresc").hide();
+    $("#updatePrescription").hide();
   });
 });

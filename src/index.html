@@ -52,6 +52,11 @@
           <div id="content">
             <label for="healthCard">Enter Health Card#</label>
             <input type="text" id="healthCard" name="healthCard"/>
+            <form onSubmit="App.GetPatientInfo(); return false;" style="display: inline">
+                <button type="submit" class="btn btn-primary">Get Patient Prescription</button>
+                
+                <hr />
+            </form>
             <hr/>
           </div>
           
@@ -67,12 +72,8 @@
               </tbody>
             </table>
             <input type="hidden" id ="selectpresc">
-          <form onSubmit="App.GetPatientInfo(); return false;">
-              <button type="submit" class="btn btn-primary">Get Patient Prescription</button>
-              
-              <hr />
-          </form>
-          <button type="button" class="btn btn-primary" onclick="App.UpdatePrescriptionInfo(); ">Update Prescription</button>
+          
+          <button type="button" id="updatePrescription" class="btn btn-primary" onclick="App.UpdatePrescriptionInfo(); ">Update Prescription</button>
         </div>  
           <p id="accountAddress" style="position: absolute; bottom: 5px ;color: #6c757d" class="text-center"></p>
         <div></div>  
