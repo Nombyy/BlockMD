@@ -37,7 +37,7 @@ App = {
     var loader = $("#loader");
     var content = $("#content");
 
-    loader.show();
+    //loader.show();
     //content.hide();
 
     // Load account data from Ganache

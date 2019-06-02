@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Election Results</title>
+    <title>BlockMD</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -18,6 +21,25 @@
     <![endif]-->
   </head>
   <body>
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+          <a class="navbar-brand" href="index.html">BlockMD</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="login.html">Login <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="signup.html">Sign Up</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
     <div class="container" style="width: 650px;">
       <div class="row">
         <div class="col-lg-12">
@@ -25,7 +47,7 @@
           <hr/>
           <br/>
           <div id="loader">
-            <p class="text-center">Loading...</p>
+            <p class="text-center"></p>
           </div>
           <div id="content">
             <label for="healthCard">Enter Health Card#</label>
@@ -34,7 +56,7 @@
           </div>
           
           <table class="table" id="tblPresc">
-              <thead>
+              <thead class="thead-dark">
                 <tr>
                   <th scope="col">Drug Name</th>
                   <th scope="col">Frequency</th>
@@ -51,8 +73,9 @@
               <hr />
           </form>
           <button type="button" class="btn btn-primary" onclick="App.UpdatePrescriptionInfo(); ">Update Prescription</button>
-            <p id="accountAddress" class="text-center"></p>
-          
+        </div>  
+          <p id="accountAddress" style="position: absolute; bottom: 5px ;color: #6c757d" class="text-center"></p>
+        <div></div>  
         </div>
       </div>
     </div>
