@@ -50,25 +50,8 @@ contract Doctor {
         patients[_healthCard].prescId = prescriptionCount;
     }
 
-     /* function fulfillPrescription(string memory _healthCard) public {
-        //string memory prescID = patients[_healthCard].prescId;
-        //string memory healthCard = prescriptions[prescID].patientHealthCardNumber;
-
-        prescriptionID = patients[_healthCard].prescId;
-        healthCard = prescriptions[prescriptionID].patientHealthCardNumber;
-
-        require(keccak256(abi.encodePacked(healthCard))!=keccak256(abi.encodePacked(_healthCard)), "Invalid Patient ID");
-        // Fulfill
-        prescriptions[prescriptionID].patientReceived = true;
-    }  */
-
     function fulfill(uint presid) public
     {
         prescriptions[presid].patientReceived = true;
     }
-/*     function fulfillPres() public
-    {
-        //Note:you need to validate the patient ID
-        fulfill(1);
-    } */
 }

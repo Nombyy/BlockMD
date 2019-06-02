@@ -107,16 +107,15 @@ App = {
 
   GetPatientInfo: function()
   {
+    var healthC = $("#healthCard").val();
+
     App.contracts.Doctor.deployed().then(function(i) {
       instance = i;
-      // $("#healthCard").html("123456789");
-      var healthC = $("#healthCard").val();
 
       instance.patients(healthC).then(function(patient){ 
-        var presID = patient[4];
-        //console.log(presID + " is the curr prescription id");
-        
-        return presID;    
+        var presID = patient[4].toNumber();
+        return presID;  
+         
       }).then(function(presID) {
           instance.prescriptions(presID).then(function(prescription){
             SelectedPrescID = prescription[0];
@@ -135,12 +134,11 @@ App = {
 
             $("#tblPresc").show();
             $("#updatePrescription").show();
-    
           })
       })
     }).catch(function(err) {
       console.error(err);
-    });
+    }); 
   },
 
   UpdatePrescriptionInfo: function()
